@@ -51,9 +51,18 @@ public class PicturesListActivity extends AppCompatActivity implements PictureLi
         }
 
         setupRecyclerView();
+    }
 
+    @Override
+    public void onStart(){
+        super.onStart();
         this.presenter.subscribe(this);
-        //this.presenter.loadMoreImages();
+    }
+
+    @Override
+    public void onStop(){
+        this.presenter.unsubscribe();
+        super.onStop();
     }
 
     private void setupRecyclerView(){
